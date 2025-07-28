@@ -1,77 +1,85 @@
-import React, { useState } from "react";
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  Pressable,
-  StyleSheet,
-  View,
-} from "react-native";
+// IconShowcase.js
+import { AntDesign, Entypo, EvilIcons, Feather, FontAwesome, Foundation, Ionicons, MaterialCommunityIcons, MaterialIcons, Octicons } from '@expo/vector-icons';
+import React from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
-type ImageItemProps = {
-  uri: string;
-};
-
-const ImageItem: React.FC<ImageItemProps> = ({ uri }) => {
-  const [scale, setScale] = useState(1);
-
-  const handlePress = () => {
-    setScale((prev) => (prev < 2 ? prev + 0.2 : 1));
-  };
-
+const IconShowcase = () => {
   return (
-    <Pressable onPress={handlePress}>
-      <Image
-        source={{ uri }}
-        style={[
-          styles.image,
-          {
-            transform: [{ scale }],
-          },
-        ]}
-      />
-    </Pressable>
+    <ScrollView contentContainerStyle={styles.container}>
+      <Text style={styles.title}>10 Ikon dari Berbagai Keluarga</Text>
+      <View style={styles.iconGrid}>
+        <View style={styles.iconBox}>
+          <FontAwesome name="music" size={30} color="#f39c12" />
+          <Text style={styles.label}>FontAwesome</Text>
+        </View>
+        <View style={styles.iconBox}>
+          <MaterialIcons name="pets" size={30} color="#e67e22" />
+          <Text style={styles.label}>MaterialIcons</Text>
+        </View>
+        <View style={styles.iconBox}>
+          <Ionicons name="planet" size={30} color="#9b59b6" />
+          <Text style={styles.label}>Ionicons</Text>
+        </View>
+        <View style={styles.iconBox}>
+          <AntDesign name="API" size={30} color="#1abc9c" />
+          <Text style={styles.label}>AntDesign</Text>
+        </View>
+        <View style={styles.iconBox}>
+          <Entypo name="aircraft" size={30} color="#3498db" />
+          <Text style={styles.label}>Entypo</Text>
+        </View>
+        <View style={styles.iconBox}>
+          <Feather name="camera" size={30} color="#2ecc71" />
+          <Text style={styles.label}>Feather</Text>
+        </View>
+        <View style={styles.iconBox}>
+          <EvilIcons name="user" size={30} color="#34495e" />
+          <Text style={styles.label}>EvilIcons</Text>
+        </View>
+        <View style={styles.iconBox}>
+          <Octicons name="bug" size={30} color="#c0392b" />
+          <Text style={styles.label}>Octicons</Text>
+        </View>
+        <View style={styles.iconBox}>
+          <Foundation name="crown" size={30} color="#e74c3c" />
+          <Text style={styles.label}>Foundation</Text>
+        </View>
+        <View style={styles.iconBox}>
+          <MaterialCommunityIcons name="robot" size={30} color="#8e44ad" />
+          <Text style={styles.label}>MaterialCommunity</Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
-
-const imageUrls = [
-  "https://picsum.photos/id/1011/300/300",
-  "https://picsum.photos/id/1015/300/300",
-  "https://picsum.photos/id/1016/300/300",
-  "https://picsum.photos/id/1020/300/300",
-  "https://picsum.photos/id/1024/300/300",
-  "https://picsum.photos/id/1025/300/300",
-  "https://picsum.photos/id/1027/300/300",
-  "https://picsum.photos/id/1033/300/300",
-  "https://picsum.photos/id/1035/300/300",
-];
-
-export default function Index() {
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={imageUrls}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={3}
-        renderItem={({ item }) => <ImageItem uri={item} />}
-      />
-    </View>
-  );
-}
-
-const screenWidth = Dimensions.get("window").width;
-const imageSize = screenWidth / 3 - 10;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    padding: 10,
-    backgroundColor: "#F9F9F9",
+    padding: 20,
+    alignItems: 'center',
+    backgroundColor: '#fff',
   },
-  image: {
-    width: imageSize,
-    height: imageSize,
-    margin: 5,
-    borderRadius: 10,
+  title: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  iconGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 20,
+  },
+  iconBox: {
+    alignItems: 'center',
+    margin: 10,
+    width: 80,
+  },
+  label: {
+    marginTop: 5,
+    fontSize: 12,
+    textAlign: 'center',
   },
 });
+
+export default IconShowcase;
