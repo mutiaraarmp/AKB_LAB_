@@ -1,35 +1,38 @@
+import { Ionicons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
 
-// app/(tabs)/_layout.js
-import { Feather } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
-
-export default function TabLayout() {
+export default function Layout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: "#0077b6" }}>
+    <Tabs
+      screenOptions={{
+        headerTitleAlign: 'center',
+        tabBarActiveTintColor: '#0066cc',
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <Feather name="home" size={size} color={color} />
+            <Ionicons name="home-outline" color={color} size={size} />
           ),
         }}
       />
       <Tabs.Screen
         name="about"
         options={{
-          title: "About",
+          title: 'About',
           tabBarIcon: ({ color, size }) => (
-            <Feather name="info" size={size} color={color} />
+            <Ionicons name="information-circle-outline" color={color} size={size} />
           ),
         }}
       />
       <Tabs.Screen
         name="profil"
         options={{
-          title: "Profil",
+          title: 'Profil',
           tabBarIcon: ({ color, size }) => (
-            <Feather name="user" size={size} color={color} />
+            <Ionicons name="person-outline" color={color} size={size} />
           ),
         }}
       />
