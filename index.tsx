@@ -1,27 +1,38 @@
-import { FlatList, Text, View } from "react-native";
+// app/index.tsx
+import { Ionicons } from '@expo/vector-icons';
+import { Link } from 'expo-router';
+import React from 'react';
+import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import students from "../data/students.js";
 
-const data = [
-  { nim: "105841114722", nama: "Mutiara Dewi" },
-  { nim: "105841114222", nama: "Reski Asriani" },
-  { nim: "105841114333", nama: "Dzulviana" },
-  { nim: "105841114444", nama: "Annisa Alfrini" },
-];
 
-export default function HomeScreen() {
+export default function IndexScreen() {
   return (
-    <View style={{ flex: 1, padding: 20 }}>
-      <Text style={{ fontSize: 22, fontWeight: "bold", marginBottom: 15 }}>
-        Daftar Mahasiswa
-      </Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Daftar Mahasiswa</Text>
+
       <FlatList
-        data={data}
+        data={students}
         keyExtractor={(item) => item.nim}
         renderItem={({ item }) => (
-          <Text style={{ fontSize: 18, marginVertical: 5 }}>
-            {item.nim} - {item.nama}
-          </Text>
+          <Link
+            href={{ pathname: '/detail', params: { nim: item.nim, nama: item.nama, foto: item.foto } }}
+            asChild
+          >
+            <Pressable style={styles.item}>
+              <Ionicons name="person-circle-outline" size={24} color="blue" />
+              <Text style={styles.text}>{item.nama} ({item.nim})</Text>
+            </Pressable>
+          </Link>
         )}
       />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: { flex: 1, padding: 20 },
+  title: { fontSize: 20, fontWeight: 'bold', marginBottom: 10 },
+  item: { flexDirection: 'row', alignItems: 'center', padding: 10, borderBottomWidth: 1, borderColor: '#ccc' },
+  text: { marginLeft: 10, fontSize: 16 },
+});
